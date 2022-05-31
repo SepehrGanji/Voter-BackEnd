@@ -2,13 +2,13 @@
 
 A project for software endgineering course.
 
-## Installation
+## Install
 
 ```bash
 $ yarn install
 ```
 
-## Running the app
+## Run
 
 ```bash
 # development
