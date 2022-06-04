@@ -6,7 +6,5 @@ export class UserService {
     return 'Hello World!';
   }
 
-  async findOne(username: string): Promise<any> {
-
-  }
+  async findOne(username: string): Promise<any> {}
 }

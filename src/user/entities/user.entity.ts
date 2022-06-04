@@ -6,7 +6,6 @@ import { GenderEnum } from './gender.enum';
   schema: 'public',
 })
 export class User {
-
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -21,5 +20,4 @@ export class User {
 
   @Column()
   sex: GenderEnum;
-
 }
