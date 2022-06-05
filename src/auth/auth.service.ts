@@ -32,5 +32,4 @@ export class AuthService {
   hashString(str: string): string {
     return bcrypt.hashSync(str, bcrypt.genSaltSync());
   }
-
 }
