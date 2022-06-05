@@ -16,4 +16,8 @@ export class UserService {
   async findOne(username: string): Promise<any> {
     return this.userRepository.findOneBy({ username });
   }
+
+  async addOne(user: any): Promise<any> {
+    return this.userRepository.insert(user);
+  }
 }

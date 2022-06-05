@@ -28,4 +28,9 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
+
+  hashString(str: string): string {
+    return bcrypt.hashSync(str, bcrypt.genSaltSync());
+  }
+
 }
