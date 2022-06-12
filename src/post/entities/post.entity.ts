@@ -1,31 +1,38 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { GenderEnum } from './gender.enum';
+import { User } from '../../user/entities/user.entity';
 
 @Entity({
-  name: 'user',
+  name: 'post',
   schema: 'public',
 })
-export class User {
+export class Post {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  username: string;
+  @Column()
+  title: string;
 
   @Column()
-  password: string;
+  desc: string;
 
-  @Column({ unique: true })
-  email: string;
+  @ManyToOne(() => User)
+  user: User;
 
   @Column()
-  sex: GenderEnum;
+  pos: number;
+
+  @Column()
+  nat: number;
+
+  @Column()
+  neg: number;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
