@@ -26,13 +26,13 @@ export class Post {
   user: User;
 
   @Column({ default: 0 })
-  pos = 0;
+  pos: number;
 
   @Column({ default: 0 })
-  nat = 0;
+  nat: number;
 
   @Column({ default: 0 })
-  neg = 0;
+  neg: number;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

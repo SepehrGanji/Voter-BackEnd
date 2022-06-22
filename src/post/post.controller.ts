@@ -11,6 +11,7 @@ import {
 import { PostService } from './post.service';
 import { PostDto } from './dto/post.dto';
 import { VoteDto } from './dto/vote.dto';
+import { CommentDto } from './dto/comment.dto';
 
 @Controller('post')
 export class PostController {
@@ -25,7 +26,7 @@ export class PostController {
       console.error(e);
       throw new HttpException(
         {
-          error: 'Error',
+          error: 'ERROR',
         },
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
@@ -51,7 +52,33 @@ export class PostController {
       }
       throw new HttpException(
         {
-          error: 'SERVER-ERROR',
+          error: 'ERROR',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+    return {
+      message: 'CREATED',
+    };
+  }
+
+  @Post('/comment')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async commentToPost(@Body() commentDto: CommentDto, @Request() req) {
+    try {
+      await this.postService.commentToPost(commentDto, req.user);
+    } catch (e) {
+      if (e instanceof Error) {
+        throw new HttpException(
+          {
+            error: e.message,
+          },
+          HttpStatus.FORBIDDEN,
+        );
+      }
+      throw new HttpException(
+        {
+          error: 'ERROR',
         },
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
