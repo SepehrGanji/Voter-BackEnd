@@ -13,9 +13,9 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './entities/create-user.dto';
+import {Public} from "../auth/decorators/public-decorator";
 
 @Controller('user')
 export class UserController {
@@ -24,12 +24,12 @@ export class UserController {
     private readonly authService: AuthService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
   getHello(): string {
     return this.userService.getHello();
   }
 
+  @Public()
   @UseGuards(LocalAuthGuard)
   @Post('/login')
   @HttpCode(HttpStatus.OK)
@@ -37,6 +37,7 @@ export class UserController {
     return this.authService.login(req.user);
   }
 
+  @Public()
   @Post('/signup')
   @UsePipes(new ValidationPipe({ transform: true }))
   async signup(@Body() createUserDto: CreateUserDto) {
