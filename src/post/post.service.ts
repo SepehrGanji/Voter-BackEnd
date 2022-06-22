@@ -105,5 +105,4 @@ export class PostService {
       order: { id: -1 },
     });
   }
-  
 }
