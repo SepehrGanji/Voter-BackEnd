@@ -50,7 +50,7 @@ export class UserController {
       console.error(e);
       throw new HttpException(
         {
-          message: 'DUPLICATE-KEY',
+          error: 'DUPLICATE-KEY',
         },
         HttpStatus.FORBIDDEN,
       );
