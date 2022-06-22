@@ -85,4 +85,25 @@ export class PostService {
   async getSinglePost(id: number) {
     return this.postRepository.findOneBy({ id });
   }
+
+  async getCommentsOfPost(id: number) {
+    return this.commentRepository.find({
+      where: { post: { id } },
+      relations: {
+        post: true,
+        user: true,
+      },
+      select: {
+        post: {
+          id: true,
+        },
+        user: {
+          username: true,
+          email: true,
+        },
+      },
+      order: { id: -1 },
+    });
+  }
+  
 }

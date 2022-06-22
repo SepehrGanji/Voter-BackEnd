@@ -108,4 +108,9 @@ export class PostController {
     }
     return post;
   }
+
+  @Get('/comments/:id')
+  async getCommentsOfPost(@Param('id') id: number) {
+    return this.postService.getCommentsOfPost(id);
+  }
 }
