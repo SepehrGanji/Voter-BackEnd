@@ -79,7 +79,7 @@ export class PostService {
   }
 
   async getAllPosts() {
-    return this.postRepository.find();
+    return this.postRepository.find({ order: { id: -1 } });
   }
 
   async getSinglePost(id: number) {
