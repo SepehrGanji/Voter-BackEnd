@@ -38,6 +38,27 @@ export class PostService {
     if (prevRecord) {
       throw new Error('Already voted!');
     }
+
+    switch (voteInput.vote) {
+      case 'NEG':
+        await this.postRepository.update(
+          { id: voteInput.post },
+          { neg: post.neg + 1 },
+        );
+        break;
+      case 'NAT':
+        await this.postRepository.update(
+          { id: voteInput.post },
+          { nat: post.nat + 1 },
+        );
+        break;
+      case 'POS':
+        await this.postRepository.update(
+          { id: voteInput.post },
+          { pos: post.pos + 1 },
+        );
+        break;
+    }
     return this.voteRepository.insert({
       post,
       user,
