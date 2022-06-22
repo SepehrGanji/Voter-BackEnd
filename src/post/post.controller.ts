@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { PostDto } from './dto/post.dto';
-import { VoteDto } from "./dto/vote.dto";
+import { VoteDto } from './dto/vote.dto';
 
 @Controller('post')
 export class PostController {
@@ -41,19 +41,19 @@ export class PostController {
     try {
       await this.postService.voteToPost(voteDto, req.user);
     } catch (e) {
-      if(e instanceof Error) {
+      if (e instanceof Error) {
         throw new HttpException(
-            {
-              error: e.message,
-            },
-            HttpStatus.FORBIDDEN,
+          {
+            error: e.message,
+          },
+          HttpStatus.FORBIDDEN,
         );
       }
       throw new HttpException(
-          {
-            error: 'SERVER-ERROR',
-          },
-          HttpStatus.INTERNAL_SERVER_ERROR,
+        {
+          error: 'SERVER-ERROR',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
     return {
