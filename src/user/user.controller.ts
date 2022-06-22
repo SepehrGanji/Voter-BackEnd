@@ -47,6 +47,7 @@ export class UserController {
     try {
       await this.userService.addOne(createUserDto);
     } catch (e) {
+      console.error(e);
       throw new HttpException(
         {
           message: 'DUPLICATE-KEY',
