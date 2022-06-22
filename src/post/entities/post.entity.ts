@@ -25,14 +25,14 @@ export class Post {
   @ManyToOne(() => User)
   user: User;
 
-  @Column()
-  pos: number;
+  @Column({ default: 0 })
+  pos: number = 0;
 
-  @Column()
-  nat: number;
+  @Column({ default: 0 })
+  nat: number = 0;
 
-  @Column()
-  neg: number;
+  @Column({ default: 0 })
+  neg: number = 0;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
