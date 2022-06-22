@@ -4,9 +4,11 @@ import {
   HttpException,
   HttpStatus,
   Post,
+  Get,
   Request,
   UsePipes,
   ValidationPipe,
+  Param,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { PostDto } from './dto/post.dto';
@@ -86,5 +88,24 @@ export class PostController {
     return {
       message: 'CREATED',
     };
+  }
+
+  @Get('/all')
+  async getAllPosts() {
+    return this.postService.getAllPosts();
+  }
+
+  @Get(':id')
+  async getSinglePost(@Param('id') id: number) {
+    const post = await this.postService.getSinglePost(id);
+    if (!post) {
+      throw new HttpException(
+        {
+          error: 'Invalid Post',
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return post;
   }
 }

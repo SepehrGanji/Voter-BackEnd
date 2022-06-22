@@ -56,4 +56,12 @@ export class PostService {
       text: commentInput.text,
     });
   }
+
+  async getAllPosts() {
+    return this.postRepository.find();
+  }
+
+  async getSinglePost(id: number) {
+    return this.postRepository.findOneBy({ id });
+  }
 }
