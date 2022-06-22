@@ -9,6 +9,7 @@ import {
   UsePipes,
   ValidationPipe,
   Param,
+  Query,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { PostDto } from './dto/post.dto';
@@ -95,7 +96,7 @@ export class PostController {
     return this.postService.getAllPosts();
   }
 
-  @Get(':id')
+  @Get('/:id')
   async getSinglePost(@Param('id') id: number) {
     const post = await this.postService.getSinglePost(id);
     if (!post) {
@@ -112,5 +113,10 @@ export class PostController {
   @Get('/:id/comments')
   async getCommentsOfPost(@Param('id') id: number) {
     return this.postService.getCommentsOfPost(id);
+  }
+
+  @Get()
+  async searchPost(@Query('q') q: string) {
+    return this.postService.searchPost(q);
   }
 }

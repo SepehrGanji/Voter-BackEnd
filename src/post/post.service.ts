@@ -105,4 +105,12 @@ export class PostService {
       order: { id: -1 },
     });
   }
+
+  async searchPost(q: string) {
+    return this.postRepository
+      .createQueryBuilder('post')
+      .where('post.title LIKE :q', { q: `%${q}%` })
+      .orWhere('post.desc LIKE :q', { q: `%${q}%` })
+      .getMany();
+  }
 }
