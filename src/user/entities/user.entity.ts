@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { GenderEnum } from './gender.enum';
+import { GenderEnum } from '../dto/gender.enum';
 
 @Entity({
   name: 'user',
