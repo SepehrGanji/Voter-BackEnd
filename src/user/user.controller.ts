@@ -15,7 +15,7 @@ import { UserService } from './user.service';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './entities/create-user.dto';
-import {Public} from "../auth/decorators/public-decorator";
+import { Public } from '../auth/decorators/public-decorator';
 
 @Controller('user')
 export class UserController {
