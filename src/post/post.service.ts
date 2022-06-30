@@ -113,4 +113,17 @@ export class PostService {
       .orWhere('post.desc LIKE :q', { q: `%${q}%` })
       .getMany();
   }
+
+  async getMyVote(post_id: number, user_id: number) {
+    return await this.voteRepository.findOne({
+      where: {
+        post: {
+          id: post_id
+        },
+        user: {
+          id: user_id
+        }
+      }
+    });
+  }
 }

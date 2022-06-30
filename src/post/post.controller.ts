@@ -97,7 +97,7 @@ export class PostController {
   }
 
   @Get('/:id')
-  async getSinglePost(@Param('id') id: number) {
+  async getSinglePost(@Param('id') id: number, @Request() req) {
     const post = await this.postService.getSinglePost(id);
     if (!post) {
       throw new HttpException(
@@ -107,7 +107,12 @@ export class PostController {
         HttpStatus.NOT_FOUND,
       );
     }
-    return post;
+    let MyVote = "NULL";
+    const voteRecord = await this.postService.getMyVote(id, req.user.id);
+    if(voteRecord) {
+      MyVote = voteRecord.vote;
+    }
+    return {...post, MyVote };
   }
 
   @Get('/:id/comments')
