@@ -107,12 +107,12 @@ export class PostController {
         HttpStatus.NOT_FOUND,
       );
     }
-    let MyVote = "NULL";
+    let MyVote = 'NULL';
     const voteRecord = await this.postService.getMyVote(id, req.user.id);
-    if(voteRecord) {
+    if (voteRecord) {
       MyVote = voteRecord.vote;
     }
-    return {...post, MyVote };
+    return { ...post, MyVote };
   }
 
   @Get('/:id/comments')

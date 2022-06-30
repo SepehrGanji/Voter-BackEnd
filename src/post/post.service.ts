@@ -118,12 +118,12 @@ export class PostService {
     return await this.voteRepository.findOne({
       where: {
         post: {
-          id: post_id
+          id: post_id,
         },
         user: {
-          id: user_id
-        }
-      }
+          id: user_id,
+        },
+      },
     });
   }
 }
