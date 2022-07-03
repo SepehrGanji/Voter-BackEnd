@@ -111,6 +111,7 @@ export class PostService {
       .createQueryBuilder('post')
       .where('post.title LIKE :q', { q: `%${q}%` })
       .orWhere('post.desc LIKE :q', { q: `%${q}%` })
+      .orderBy({ id: 'DESC' })
       .getMany();
   }
 
