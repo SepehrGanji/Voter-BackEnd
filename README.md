@@ -1,6 +1,6 @@
 ## Voter-BackEnd
 
-A project for software endgineering course.
+A project for software engineering course.
 
 ## Install
 
