@@ -8,7 +8,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Voter project')
     .setDescription('The Voter API description')
-    .setVersion('1.0')
+    .setVersion('1.0.0')
     .addTag('voter')
     .build();
   const document = SwaggerModule.createDocument(app, config);
