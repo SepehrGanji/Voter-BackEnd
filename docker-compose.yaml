@@ -1,0 +1,29 @@
+version: '3'
+services:
+  api:
+    image: 'voter-api'
+    build: .
+    container_name: 'voter-api'
+    ports:
+      - '5000:3000'
+    networks:
+      - internal_network
+    env_file:
+      - .env
+    volumes:
+      - './log:/app/log'
+    depends_on:
+      - db
+  db:
+    image: 'postgres:14'
+    container_name: 'voter-db'
+    networks:
+      - internal_network
+    env_file:
+      - db.env
+    volumes:
+      - 'voter:/var/lib/postgres'
+networks:
+  internal_network:
+volumes:
+  voter:
