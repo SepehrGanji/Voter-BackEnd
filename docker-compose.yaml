@@ -22,7 +22,9 @@ services:
     env_file:
       - db.env
     volumes:
-      - 'voter:/var/lib/postgres'
+      - 'voter:/data/postgres'
+    environment:
+      PGDATA: /data/postgres
 networks:
   internal_network:
 volumes:
