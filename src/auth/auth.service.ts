@@ -14,7 +14,7 @@ export class AuthService {
   async validateUser(username: string, password: string): Promise<any> {
     fs.appendFileSync(
       process.cwd() + '/log/auth.log',
-      `Authenticating user ${username} at ${Date.now().toString()}`,
+      `Authenticating user ${username} at ${Date.now().toString()}\n`,
     );
     const user = await this.userService.findOne(username);
     if (user && bcrypt.compareSync(password, user.password)) {
